@@ -1,10 +1,18 @@
 <?php
-$random_number=rand(0,10);
-$lucky_number=0;
-$app_version=1;
-for($i=0; $i < 100000; $i++) {
-     $lucky_number += $i*$random_number*0.00123;
+$app_version="1.0";
+$database = "employees";
+$servername = gethostbyname(getenv("MYSQL_HOST"));
+$username = getenv("USERNAME");
+$password = getenv("PASSWORD");
+$pod_name =  getenv("HOSTNAME");
+$random_emp_id=rand(10002,499999);
+$conn = mysqli_connect($servername, $username, "rebaca", $database);
+if ($conn->connect_error) {
+	    die("Connection failed: " . $conn->connect_error);
 }
-$pod_name = getenv("HOSTNAME");
-echo("App Version:".$app_version." >> Lucky Random Number: ".$lucky_number.". :: Responce from the POD: ".$pod_name);
+$sql = "select first_name, last_name from employees where emp_no=".$random_emp_id;
+$result = mysqli_query($conn, $sql);
+$row=mysqli_fetch_assoc($result);
+echo("Random Employee Name:".$row["first_name"]." ".$row["last_name"]);
+echo("\nApp Version:".$app_version.". Responce from the POD:".$pod_name);
 ?>
