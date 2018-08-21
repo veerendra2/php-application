@@ -6,7 +6,7 @@ $username = getenv("USERNAME");
 $password = getenv("PASSWORD");
 $pod_name =  getenv("HOSTNAME");
 $random_emp_id=rand(10002,499999);
-$conn = mysqli_connect($servername, $username, "rebaca", $database);
+$conn = mysqli_connect($servername, $username, $password, $database);
 if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 }
