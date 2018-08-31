@@ -1,5 +1,5 @@
 <?php
-$app_version="v2.4";
+$app_version="v2.5";
 $database = "employees";
 $servername = gethostbyname(getenv("MYSQL_HOST"));
 $username = getenv("USERNAME");
